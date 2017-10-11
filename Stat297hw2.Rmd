@@ -9,6 +9,20 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+### Fizz Buzz
+for (i in 1:1000){
+  
+  if (i %%3 ==0){
+    cat('fizz')
+  }
+  if (i %% 5 ==0){
+    cat('buzz')
+  }
+  if ((i %%3 != 0) && (i%%5!=0)){
+    cat(i)
+  } 
+  cat(' ')
+}
 
 
 ### Map 
