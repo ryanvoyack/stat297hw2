@@ -56,19 +56,15 @@ MAP + scale_size(name= 'Win Rate [%]')
 
 ### 3d Random Walks
 
-```{r givenchunk 2, echo=FALSE}
-B <- 10^4
-set.seed(1982)
-Ut <- runif(B)
-head(Ut)
-```
+* **(a)** Show that Xb = <26, -44, 26> 
 
 * **(a)** Show that Xb = <26, -44, 26> 
 
-```{r, createfunction}
-f <- function(Ut, X){
-  U <- Ut[1]
-  
+```{r createfunction}
+f <- function(i, X){
+  i=i-1
+  U <- Ut[i]  
+
   if(U<=(1/6)){
     U <- c(1,0,0)
     return(X + U)
@@ -79,32 +75,54 @@ f <- function(Ut, X){
     U <- c(0,1,0)
     return(X + U)
   }else if(U<=(4/6)){
-    U <- c(0,-1,0)
+  U <- c(0,-1,0)
     return(X + U)
   }else if(U<=(5/6)){
     U <- c(0,0,1)
     return(X + U)
-  }else if(U<1){
-    U <- c(0,-1,0)
+  }else if(U<=1){
+    U <- c(0,0,-1)
     return(X + U)
-  }
-}
-
-
-fun <- function(Ut, X){
-  X <- X + f(Ut, X)
-  Ut <- Ut[-1]
-  
-  if(length(Ut) != 0){
-    return(fun(Ut, X))  
   }else{
     return(X)
   }
 }
 ```
 
-```{r}
-X <- c(0,0,0)
-print(fun(Ut, X))
+
+```{r partA, echo=FALSE}
+B <- 10^4
+set.seed(1982)
+Ut <- runif(B)
+head(Ut)
+
+B=B+1 #so we could make the first column (coordinate set) of our matrix the original position
+positions <- matrix(NA, 3, B)
+X = c(0,0,0) #our Xo, our starting position
+
+
+for(i in (1:(B))){
+  if(i!=1){
+    X <- f(i,X)
+  }
+  positions[,i] <- X
+} 
+```
+
+
+```{r createPlot}
+xyz0positions <- positions[,1:10000]
+x0<-xyz0positions[1,] 
+y0<-xyz0positions[2,] 
+z0<-xyz0positions[3,] 
+
+x1<-positions[1,-1] 
+y1<-positions[2,-1] 
+z1<-positions[3,-1] 
+
+
+library(plot3D)
+
+segments3D(x0,y0,z0,x1,y1,z1, xlim=c(-20,35), ylim=c(-40,22), zlim=c(-15,45), phi=0)
 ```
 
