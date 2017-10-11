@@ -106,7 +106,9 @@ for(i in (1:(B))){
     X <- f(i,X)
   }
   positions[,i] <- X
-} 
+}
+
+X #this is our Xb
 ```
 
 
@@ -123,6 +125,6 @@ z1<-positions[3,-1]
 
 library(plot3D)
 
-segments3D(x0,y0,z0,x1,y1,z1, xlim=c(-20,35), ylim=c(-40,22), zlim=c(-15,45), phi=0)
+(segments3D(x0,y0,z0,x1,y1,z1, xlim=c(-20,35), ylim=c(-40,22), zlim=c(-15,45), phi=0))
 ```
 
