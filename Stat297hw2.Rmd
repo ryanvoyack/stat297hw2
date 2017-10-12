@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ### Fizz Buzz
-'''{r} 
+'''{r something} 
 for (i in 1:1000){
   
   if (i %%3 ==0){
