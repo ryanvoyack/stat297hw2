@@ -146,7 +146,7 @@ scatter3D(x0[10000],y0[10000],z0[10000],pch=20, cex=2, add=TRUE, col='blue')
 ```
 
 ### Portfolio
-library(quantmod)
+```library(quantmod)
 library(rvest)
 sp500 <- read_html("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies")
 
@@ -175,3 +175,4 @@ for(j in 1:(N-1)){
     cost = max(40, 0.0001*10^6*S1)+max(40, 0.0001*10^6 *S2)
   }
 }
+```
