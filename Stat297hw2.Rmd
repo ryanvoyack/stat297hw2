@@ -168,9 +168,16 @@ OM_MAT = matrix(NA,N,N)
 
 for(j in 1:(N-1)){
   for(i in (j+1):N){
-    S1= get(tick[i])
-    S2 = get(tick[j])
-    cost = max(40, 0.0001*10^6*S1)+max(40, 0.0001*10^6 *S2)
+    S1= get(SP500_symbol[i])
+    S2 = get(SP500_symbol[j])
+    Ra <- na.omit(ClCl(S1))
+    Rn <- na.omit(ClCl(S2)) 
+    cost = max(40, 0.0001*10^6*Ra)+max(40, 0.0001*10^6 *Rn)
+    if (cost <=100){
+      mu_investment = omega_star*S1[1] + (1 - omega_star)*S2[2]
+      var_investment = omega_star^2*Sigma[1,1] + (1 - omega_star)^2*Sigma[2,2] + 
+        2*omega_star*(1 - omega_star)*Sigma[1,2]
+    }
   }
 }
 ```
