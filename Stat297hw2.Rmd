@@ -158,12 +158,10 @@ SP500_symbol <- ticker_sp500[(1:499)*2+1]
 SP500_symbol[SP500_symbol == "BRK.B"] <- "BRK-B"
 SP500_symbol[SP500_symbol == "BF.B"] <- "BF-B"
 
-library(quantmod)
+
 today <- Sys.Date()
 three_year_ago <- seq(today, length = 2, by = "-3 year")[2]
-stocks_tickers <- c("AAPL", "MSFT")
-getSymbols(stocks_tickers, from = three_year_ago, to = today)
-
+getSymbols(SP500_symbol, from = three_year_ago, to = today)
 
 N = length(tick)
 OM_MAT = matrix(NA,N,N)
